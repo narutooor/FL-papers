@@ -1,0 +1,19 @@
+experiment:
+  seeds: [7, 19, 42]
+
+data:
+  n_clients: 9
+  train_per_client: 96
+  test_per_client: 96
+  n_features: 12
+  n_classes: 3
+  dirichlet_alpha: 0.08
+  class_separation: 0.90
+  noise_std: 1.70
+
+training:
+  rounds: 8
+  local_epochs: 1
+  centralized_epochs: 32
+  batch_size: 32
+  learning_rate: 0.10

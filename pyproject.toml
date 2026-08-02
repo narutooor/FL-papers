@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools==69.0.3", "wheel==0.42.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fedavg-heterogeneity-lab"
+version = "0.1.0"
+description = "A reproducible PyTorch benchmark for FedAvg under client label skew"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = { file = "LICENSE" }
+authors = [{ name = "narutooor" }]
+dependencies = [
+  "numpy==1.26.3",
+  "PyYAML==6.0.2",
+  "torch==2.2.0",
+]
+
+[project.scripts]
+fedavg-benchmark = "fedavg_heterogeneity.experiment:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

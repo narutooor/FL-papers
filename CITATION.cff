@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you build on this benchmark, please cite the repository and exact commit."
+title: "FedAvg Under Client Heterogeneity"
+type: software
+authors:
+  - family-names: "narutooor"
+version: 0.1.0
+date-released: 2026-08-02
+repository-code: "https://github.com/narutooor/FL-papers"
+license: MIT
+

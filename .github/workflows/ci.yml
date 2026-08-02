@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install -r requirements-lock.txt
+          python -m pip install --no-deps .
+
+      - name: Test
+        run: python -m unittest discover -s tests -v
+
+      - name: Reproduce benchmark
+        run: fedavg-benchmark --config configs/benchmark.yaml --output /tmp/benchmark.json
+
+      - name: Check result drift
+        run: python scripts/check_result_drift.py results/benchmark.json /tmp/benchmark.json
